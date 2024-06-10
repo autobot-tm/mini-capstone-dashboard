@@ -20,7 +20,7 @@ const SignIn = () => {
   }
   useEffect(() => {
     if (error) {
-      const errorMessage = error.response.data
+      const errorMessage = error?.response?.data
       api.error({
         type: 'error',
         message: errorMessage,

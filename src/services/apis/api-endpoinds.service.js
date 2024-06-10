@@ -8,4 +8,8 @@ export const ENDPOINTS = {
     requestResetPassword: '/api/forget-password',
     upRoleTutor: '/api/up-role',
   },
+  userManagement: {
+    base: '/api/accounts',
+    delete: (id) => `/api/account/${id}`,
+  },
 }

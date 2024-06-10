@@ -27,7 +27,6 @@ export const signIn = createAsyncThunk(
     try {
       const response = await signInService(input)
       const role = response.data.role
-      console.log(role)
       if (role === UserRole.STUDENT) {
         throw 'Your role cannot login'
       }
@@ -35,7 +34,7 @@ export const signIn = createAsyncThunk(
         ...response.data,
         role,
       }
-      save(STORAGE_KEYS.AUTH, signInResponse)
+      save(STORAGE_KEYS.AUTH, response.data.token)
       return { ...signInResponse }
     } catch (error) {
       console.warn('🚀 ~ file: auth.slice. signIn ~ error:', error)

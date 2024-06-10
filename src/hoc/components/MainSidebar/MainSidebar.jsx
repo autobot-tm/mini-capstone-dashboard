@@ -1,6 +1,10 @@
 import { Layout, Menu } from 'antd'
 import './styles.scss'
-import { HomeOutlined, DashboardOutlined } from '@ant-design/icons'
+import {
+  HomeOutlined,
+  DashboardOutlined,
+  TeamOutlined,
+} from '@ant-design/icons'
 const { Sider } = Layout
 import { useLocation } from 'react-router-dom'
 import { Link } from 'react-router-dom'
@@ -11,6 +15,12 @@ const menuItems = [
     path: '/',
     label: 'Dashboard',
     key: 'dashboard',
+  },
+  {
+    icon: <TeamOutlined />,
+    path: '/account',
+    label: 'Account',
+    key: 'account',
   },
   {
     icon: <HomeOutlined />,
