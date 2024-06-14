@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Table, Button, Space, Popconfirm, message, Alert } from 'antd'
 import { deleteUsers, getUsers } from '../../services/apis/user-manager.service'
 import { SpinLoading } from '../../components/SpinLoading'
+import { QuestionCircleOutlined } from '@ant-design/icons'
 
 const Account = () => {
   const [users, setUsers] = useState([])
@@ -26,7 +27,9 @@ const Account = () => {
   useEffect(() => {
     fetchUsers()
   }, [])
-
+  const handleInfo = (id) => {
+    console.log(id)
+  }
   const handleDelete = async (id) => {
     console.log('Delete user with id:', id)
     try {
@@ -81,6 +84,9 @@ const Account = () => {
           >
             <Button danger>Delete</Button>
           </Popconfirm>
+          <i onClick={() => handleInfo(record.id)}>
+            <QuestionCircleOutlined />
+          </i>
         </Space>
       ),
     },

@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useAuthSlice } from '../../store/slices.js/auth.slice'
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { ERROR_TRANS_KEYS } from '../../constants/error.constant'
 
 const { Title } = Typography
 const SignIn = () => {
@@ -14,11 +15,18 @@ const SignIn = () => {
   const { loading, error, token } = useSelector((state) => state.auth)
 
   const onFinish = (values) => {
-    console.log(values)
     const { email, password } = values
     dispatch(authActions.signIn({ email, password }))
   }
   useEffect(() => {
+    if (error == ERROR_TRANS_KEYS.LIMIT_ROLES) {
+      api.error({
+        type: 'error',
+        message: ERROR_TRANS_KEYS.LIMIT_ROLES,
+      })
+      dispatch(authActions.clearError())
+      return
+    }
     if (error) {
       const errorMessage = error?.response?.data
       api.error({

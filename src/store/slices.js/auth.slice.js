@@ -3,6 +3,7 @@ import { signInService } from '../../services/apis/auth.service'
 import { STORAGE_KEYS } from '../../constants/storage.constant'
 import { load, save } from '../../utils/local-storage'
 import { UserRole } from '../../constants/user.constant'
+import { ERROR_TRANS_KEYS } from '../../constants/error.constant'
 
 const DEFAULT_STATES = {
   token: '',
@@ -28,7 +29,7 @@ export const signIn = createAsyncThunk(
       const response = await signInService(input)
       const role = response.data.role
       if (role === UserRole.STUDENT) {
-        throw 'Your role cannot login'
+        throw ERROR_TRANS_KEYS.LIMIT_ROLES
       }
       const signInResponse = {
         ...response.data,
@@ -48,7 +49,7 @@ export const initState = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const localAuth = load(STORAGE_KEYS.AUTH) ?? {}
-      let newStates = { ...DEFAULT_STATES, ...localAuth }
+      let newStates = { ...DEFAULT_STATES, token: localAuth }
       return newStates
     } catch (error) {
       console.warn('🚀 ~ file: auth.slice. initState ~ error:', error)
