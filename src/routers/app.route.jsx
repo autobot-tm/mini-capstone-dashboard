@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { PrivateRoute } from './private.route'
 import MainLayout from '../hoc/MainLayout'
 import { routePaths } from './path.route'
+import AccountInfo from '../pages/Account/components/AccountInfo/AccountInfo'
 
 export const AppRouter = () => {
   const protectRoute = (
@@ -24,6 +25,7 @@ export const AppRouter = () => {
           ))}
         </Route>
       </Routes>
+      <AccountInfo />
     </BrowserRouter>
   )
 }

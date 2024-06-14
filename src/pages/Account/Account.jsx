@@ -3,18 +3,20 @@ import { Table, Button, Space, Popconfirm, message, Alert } from 'antd'
 import { deleteUsers, getUsers } from '../../services/apis/user-manager.service'
 import { SpinLoading } from '../../components/SpinLoading'
 import { QuestionCircleOutlined } from '@ant-design/icons'
+import { openAccountInfoModal } from '../../store/slices.js/modal.slice'
+import { useDispatch } from 'react-redux'
 
 const Account = () => {
   const [users, setUsers] = useState([])
   const [isLoading, setIsLoading] = useState(true)
   const [isError, setIsError] = useState(false)
+  const dispatch = useDispatch()
 
   const fetchUsers = async () => {
     setIsLoading(true)
     setIsError(false)
     try {
       const response = await getUsers()
-      console.log(response)
       setUsers(response.data)
     } catch (error) {
       console.log(error)
@@ -28,7 +30,7 @@ const Account = () => {
     fetchUsers()
   }, [])
   const handleInfo = (id) => {
-    console.log(id)
+    dispatch(openAccountInfoModal(id))
   }
   const handleDelete = async (id) => {
     console.log('Delete user with id:', id)
@@ -69,7 +71,7 @@ const Account = () => {
       title: 'Status',
       dataIndex: 'enabled',
       key: 'enabled',
-      render: (enabled) => (enabled ? 'Enabled' : 'Disabled'),
+      render: (enabled) => (enabled ? 'Activated' : 'Deactivated'),
     },
     {
       title: 'Actions',

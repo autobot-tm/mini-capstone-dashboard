@@ -1,22 +1,25 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-  accountDetailModal: false,
+  propsModal: '',
+  accountInfoModal: false,
 }
 
 const modalSlice = createSlice({
   name: 'modal',
   initialState,
   reducers: {
-    openAccountDetailModal: (state) => {
-      state.accountDetailModal = true
+    openAccountInfoModal: (state, action) => {
+      state.accountInfoModal = true
+      state.propsModal = action.payload
     },
-    closeAccountDetailModal: (state) => {
-      state.accountDetailModal = false
+    closeAccountInfoModal: (state) => {
+      state.accountInfoModal = false
+      state.propsModal = ''
     },
   },
 })
 
 export default modalSlice.reducer
-export const { openAccountDetailModal, closeAccountDetailModal } =
+export const { openAccountInfoModal, closeAccountInfoModal } =
   modalSlice.actions

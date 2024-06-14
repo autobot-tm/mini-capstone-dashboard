@@ -10,6 +10,6 @@ export const ENDPOINTS = {
   },
   userManagement: {
     base: '/api/accounts',
-    delete: (id) => `/api/account/${id}`,
+    user: (id) => `/api/account/${id}`,
   },
 }
