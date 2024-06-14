@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { AppRouter } from './routers/app.route'
-import { useAuthSlice } from './store/slices.js/auth.slice'
 import { useDispatch } from 'react-redux'
+import { useAuthSlice } from './store/slices/auth.slice'
 
 function App() {
   const [loading, setLoading] = useState(true)

@@ -12,4 +12,7 @@ export const ENDPOINTS = {
     base: '/api/accounts',
     user: (id) => `/api/account/${id}`,
   },
+  users: {
+    base: '/api/account',
+  },
 }

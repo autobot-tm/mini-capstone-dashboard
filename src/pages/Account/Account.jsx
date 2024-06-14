@@ -3,7 +3,7 @@ import { Table, Button, Space, Popconfirm, message, Alert } from 'antd'
 import { deleteUsers, getUsers } from '../../services/apis/user-manager.service'
 import { SpinLoading } from '../../components/SpinLoading'
 import { QuestionCircleOutlined } from '@ant-design/icons'
-import { openAccountInfoModal } from '../../store/slices.js/modal.slice'
+import { openAccountInfoModal } from '../../store/slices/modal.slice'
 import { useDispatch } from 'react-redux'
 
 const Account = () => {
@@ -17,7 +17,7 @@ const Account = () => {
     setIsError(false)
     try {
       const response = await getUsers()
-      setUsers(response.data)
+      setUsers(response)
     } catch (error) {
       console.log(error)
       setIsError(true)

@@ -7,7 +7,6 @@ export const SpinLoading = () => {
         display: 'flex',
         justifyContent: 'center',
         alignContent: 'center',
-        height: '100vh',
       }}
     >
       <Spin size='large' />

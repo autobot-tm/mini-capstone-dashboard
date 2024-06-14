@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux'
 import CustomModal from '../../../../components/CustomModal/CustomModal'
-import { closeAccountInfoModal } from '../../../../store/slices.js/modal.slice'
+import { closeAccountInfoModal } from '../../../../store/slices/modal.slice'
 import './styles.scss'
 import { useEffect, useState } from 'react'
 import { getInfoUser } from '../../../../services/apis/user-manager.service'
@@ -17,7 +17,7 @@ const AccountInfo = () => {
     setIsError(false)
     try {
       const response = await getInfoUser({ id: propsModal })
-      setAccount(response.data)
+      setAccount(response)
     } catch (error) {
       console.log('Error at fetch info account', error)
       setIsError(true)

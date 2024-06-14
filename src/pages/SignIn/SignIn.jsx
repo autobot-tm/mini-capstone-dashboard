@@ -1,10 +1,10 @@
 import './styles.scss'
 import { Space, Input, Form, Button, Typography, notification } from 'antd'
 import { useDispatch, useSelector } from 'react-redux'
-import { useAuthSlice } from '../../store/slices.js/auth.slice'
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { ERROR_TRANS_KEYS } from '../../constants/error.constant'
+import { useAuthSlice } from '../../store/slices/auth.slice'
 
 const { Title } = Typography
 const SignIn = () => {
@@ -28,10 +28,9 @@ const SignIn = () => {
       return
     }
     if (error) {
-      const errorMessage = error?.response?.data
       api.error({
         type: 'error',
-        message: errorMessage,
+        message: error,
       })
       dispatch(authActions.clearError())
     }

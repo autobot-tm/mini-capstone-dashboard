@@ -7,26 +7,22 @@ import {
   UserOutlined,
 } from '@ant-design/icons'
 import { useNavigate } from 'react-router-dom'
-// import { useDispatch, useSelector } from 'react-redux';
-// import { useAuthSlice } from '../../../../store/slices/auth.slice';
-// import { userRoleMapper } from '../../../../utils/user';
-// import { UserAuthMethod } from '../../../../constants/user.constant';
-// import { getUserInfoFromToken } from '../../../../utils/auth';
+import { useDispatch, useSelector } from 'react-redux'
+import { useAuthSlice } from '../../../store/slices/auth.slice.js'
 const { Header } = Layout
 
 const MainHeader = () => {
   const navigate = useNavigate()
-  // const dispatch = useDispatch();
-  // const { id_token } = useSelector(state => state.auth);
-  // const { role, auth_method } = getUserInfoFromToken(id_token);
-  // const { actions: authActions } = useAuthSlice();
+  const dispatch = useDispatch()
+  const { role } = useSelector((state) => state.auth)
+  const { actions: authActions } = useAuthSlice()
   const onItemClick = (event) => {
     const { key } = event
 
     if (key === 'logout') {
       const confirmLogout = window.confirm('Do you want logout?')
       if (confirmLogout) {
-        // dispatch(authActions.signOut());
+        dispatch(authActions.signOut())
       }
       return
     }
@@ -43,7 +39,7 @@ const MainHeader = () => {
           size='large'
           style={{ color: 'white' }}
         >
-          Role
+          {role}
         </Button>
       ),
       children: [
@@ -60,8 +56,7 @@ const MainHeader = () => {
         {
           label: <span>Change Password</span>,
           icon: <LockOutlined />,
-          key: '/auth/change-password',
-          // disabled: auth_method !== UserAuthMethod.NORMAL,
+          key: '/user-info/change-password',
         },
         {
           label: <span>Sign Out</span>,

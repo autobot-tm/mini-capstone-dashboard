@@ -1,4 +1,4 @@
-import apiCaller from '../../axios/client'
+import { apiCaller } from '../../axios/client'
 import { ENDPOINTS } from './api-endpoinds.service'
 
 export const getUsers = () => {
