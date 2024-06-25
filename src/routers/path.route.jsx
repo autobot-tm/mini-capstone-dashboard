@@ -3,9 +3,10 @@ import Account from '../pages/Account/Account'
 import ChangePassword from '../pages/ChangePassword/ChangePassword'
 import Dashboard from '../pages/Dashboard/Dashboard'
 import SignIn from '../pages/SignIn/SignIn'
-import Tutor from '../pages/Tutor/Tutor'
+import TutorRequest from '../pages/TutorRequest/TutorRequest'
 import UserEdit from '../pages/UserEdit/UserEdit'
 import UserInfo from '../pages/UserInfo/UserInfo'
+import RegisterRequest from '../pages/RegisterRequest/RegisterRequest'
 
 export const routePaths = {
   public: [
@@ -20,8 +21,8 @@ export const routePaths = {
       element: <Dashboard />,
     },
     {
-      path: routeNames.Tutor,
-      element: <Tutor />,
+      path: routeNames.RegisterRequest,
+      element: <RegisterRequest />,
     },
     {
       path: routeNames.Account,
@@ -38,6 +39,10 @@ export const routePaths = {
     {
       path: routeNames.ChangePassword,
       element: <ChangePassword />,
+    },
+    {
+      path: routeNames.TutorRequest,
+      element: <TutorRequest />,
     },
   ],
 }

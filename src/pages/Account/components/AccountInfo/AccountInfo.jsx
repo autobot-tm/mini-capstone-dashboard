@@ -5,14 +5,15 @@ import './styles.scss'
 import { useEffect, useState } from 'react'
 import { getInfoUser } from '../../../../services/apis/user-manager.service'
 import { SpinLoading } from '../../../../components/SpinLoading'
-import { Paragraph } from '../../../../components/Typography/Paragraph/Paragraph'
+import { Table, Tag } from 'antd'
 
 const AccountInfo = () => {
   const { accountInfoModal, propsModal } = useSelector((state) => state.modal)
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(false)
   const [isError, setIsError] = useState(false)
   const [account, setAccount] = useState({})
-  const fecthInfoAccount = async () => {
+
+  const fetchInfoAccount = async () => {
     setIsLoading(true)
     setIsError(false)
     try {
@@ -27,9 +28,59 @@ const AccountInfo = () => {
   }
   useEffect(() => {
     if (accountInfoModal) {
-      fecthInfoAccount()
+      fetchInfoAccount()
     }
   }, [accountInfoModal])
+
+  const columns = [
+    {
+      title: 'Field',
+      dataIndex: 'field',
+      key: 'field',
+    },
+    {
+      title: 'Information',
+      dataIndex: 'info',
+      key: 'info',
+    },
+  ]
+
+  const data = [
+    {
+      key: '1',
+      field: 'ID',
+      info: account.id,
+    },
+    {
+      key: '2',
+      field: 'Email',
+      info: account.email,
+    },
+    {
+      key: '3',
+      field: 'Fullname',
+      info: account.fullname || 'N/A',
+    },
+    {
+      key: '4',
+      field: 'Phone',
+      info: account.phone || '-',
+    },
+    {
+      key: '5',
+      field: 'Role',
+      info: account.role,
+    },
+    {
+      key: '6',
+      field: 'Status',
+      info: account.deleted ? (
+        <Tag color='magenta'>Deactivated</Tag>
+      ) : (
+        <Tag color='blue'>Activated</Tag>
+      ),
+    },
+  ]
   if (isLoading) {
     return <SpinLoading />
   }
@@ -45,24 +96,14 @@ const AccountInfo = () => {
       action={closeAccountInfoModal}
       footer={null}
     >
-      <Paragraph classNames='d-block'>
-        <b>ID:</b> {account.id}
-      </Paragraph>
-      <Paragraph classNames='d-block'>
-        <b>Email:</b> {account.email}
-      </Paragraph>
-      <Paragraph classNames='d-block'>
-        <b>Fullname:</b> {account.fullname || 'N/A'}
-      </Paragraph>
-      <Paragraph classNames='d-block'>
-        <b>Phone:</b> {account.phone || '-'}
-      </Paragraph>
-      <Paragraph classNames='d-block'>
-        <b>Role:</b> {account.role}
-      </Paragraph>
-      <Paragraph classNames='d-block'>
-        <b>Enabled:</b> {account.enabled ? 'Activated' : 'Deactivated'}
-      </Paragraph>
+      <Table
+        columns={columns}
+        dataSource={data}
+        pagination={false}
+        showHeader={false}
+        rowKey='key'
+        bordered
+      />
     </CustomModal>
   )
 }

@@ -11,6 +11,9 @@ export const ENDPOINTS = {
   userManagement: {
     base: '/api/accounts',
     user: (id) => `/api/account/${id}`,
+    tutorRequest: '/api/pending-accounts',
+    approvedUpRole: '/api/approved-up-role',
+    rejectedUpRole: '/api/rejected-up-role',
   },
   users: {
     base: '/api/account',

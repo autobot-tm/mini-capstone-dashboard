@@ -18,6 +18,7 @@ const SignIn = () => {
     const { email, password } = values
     dispatch(authActions.signIn({ email, password }))
   }
+
   useEffect(() => {
     if (error == ERROR_TRANS_KEYS.LIMIT_ROLES) {
       api.error({
@@ -34,13 +35,13 @@ const SignIn = () => {
       })
       dispatch(authActions.clearError())
     }
-  }, [api, error])
+  }, [api, error, authActions, dispatch])
 
   useEffect(() => {
     if (token) {
       navigation('/')
     }
-  }, [token])
+  }, [token, navigation])
   return (
     <>
       {contextHolder}
