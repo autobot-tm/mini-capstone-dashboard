@@ -1,13 +1,16 @@
 import { Layout, Menu } from 'antd'
 import './styles.scss'
 import {
-  HomeOutlined,
+  ContactsOutlined,
   DashboardOutlined,
   TeamOutlined,
+  SafetyCertificateOutlined,
+  CloudUploadOutlined,
 } from '@ant-design/icons'
 const { Sider } = Layout
 import { useLocation } from 'react-router-dom'
 import { Link } from 'react-router-dom'
+import LOGO from '../../../assets/images/logo.svg'
 
 const menuItems = [
   {
@@ -23,10 +26,22 @@ const menuItems = [
     key: 'account',
   },
   {
-    icon: <HomeOutlined />,
+    icon: <SafetyCertificateOutlined />,
     path: '/tutor',
     label: 'Tutor',
     key: 'tutor',
+  },
+  {
+    icon: <CloudUploadOutlined />,
+    path: '/register-request',
+    label: 'Register Request',
+    key: 'register-request',
+  },
+  {
+    icon: <ContactsOutlined />,
+    path: '/tutor-request',
+    label: 'Tutor Request',
+    key: 'tutor-request',
   },
 ]
 const MainSidebar = () => {
@@ -41,7 +56,7 @@ const MainSidebar = () => {
 const Logo = () => {
   return (
     <Link to={'/'} className='container-logo'>
-      LOGO
+      <img src={LOGO} alt='logo-img' />
     </Link>
   )
 }

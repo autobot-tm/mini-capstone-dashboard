@@ -1,0 +1,502 @@
+[
+  {
+    "id": 1,
+    "tutorSchedules": [
+      {
+        "id": 1,
+        "weekDay": "Monday",
+        "teachingTime": "morning"
+      },
+      {
+        "id": 2,
+        "weekDay": "Wednesday",
+        "teachingTime": "afternoon"
+      }
+    ],
+    "tutor": {
+      "id": 1,
+      "fullname": "Alice Smith",
+      "phone": "+1234567890",
+      "rating": 4.8,
+      "educationLevel": "Master"
+    },
+    "name": [
+      {
+        "id": 1,
+        "subject": "Mathematics"
+      },
+      {
+        "id": 2,
+        "subject": "Physics"
+      },
+      {
+        "id": 3,
+        "subject": "Chemistry"
+      }
+    ],
+    "grade": 10,
+    "description": "Experienced tutor passionate about mathematics education, dynamic physics lessons tailored to individual student needs, Passionate about literature and developing critical thinking skills. Exploring the wonders of chemistry through engaging experiments.",
+    "location": [
+      {
+        "id": 1,
+        "name": "District 1"
+      },
+      {
+        "id": 2,
+        "name": "District 3"
+      }
+    ],
+    "video": "https://www.youtube.com/watch?v=JeOggtJH5n8",
+    "deleted": false
+  },
+  {
+    "id": 2,
+    "tutorSchedules": [
+      {
+        "id": 3,
+        "weekDay": "Tuesday",
+        "teachingTime": "evening"
+      },
+      {
+        "id": 4,
+        "weekDay": "Thursday",
+        "teachingTime": "morning"
+      }
+    ],
+    "tutor": {
+      "id": 2,
+      "fullname": "Bob Johnson",
+      "phone": "+9876543210",
+      "rating": 4.5,
+      "educationLevel": "Ph.D."
+    },
+    "name": [
+      {
+        "id": 1,
+        "subject": "Mathematics"
+      },
+      {
+        "id": 2,
+        "subject": "Physics"
+      },
+      {
+        "id": 3,
+        "subject": "Chemistry"
+      }
+    ],
+    "grade": 11,
+    "description": "Experienced tutor passionate about mathematics education, dynamic physics lessons tailored to individual student needs, Passionate about literature and developing critical thinking skills. Exploring the wonders of chemistry through engaging experiments.",
+    "location": [
+      {
+        "id": 3,
+        "name": "District 5"
+      },
+      {
+        "id": 4,
+        "name": "District 7"
+      }
+    ],
+    "video": "https://www.youtube.com/watch?v=abcdefghijklmnopqrstuvwxyz2",
+    "deleted": false
+  },
+  {
+    "id": 3,
+    "tutorSchedules": [
+      {
+        "id": 5,
+        "weekDay": "Friday",
+        "teachingTime": "morning"
+      },
+      {
+        "id": 6,
+        "weekDay": "Saturday",
+        "teachingTime": "afternoon"
+      }
+    ],
+    "tutor": {
+      "id": 3,
+      "fullname": "Emily Brown",
+      "phone": "+1112223333",
+      "rating": 4.7,
+      "educationLevel": "Bachelor"
+    },
+    "name": [
+      {
+        "id": 1,
+        "subject": "Mathematics"
+      },
+      {
+        "id": 2,
+        "subject": "Physics"
+      },
+      {
+        "id": 3,
+        "subject": "Chemistry"
+      }
+    ],
+    "grade": 12,
+    "description": "Experienced tutor passionate about mathematics education, dynamic physics lessons tailored to individual student needs, Passionate about literature and developing critical thinking skills. Exploring the wonders of chemistry through engaging experiments.",
+    "location": [
+      {
+        "id": 5,
+        "name": "District 2"
+      },
+      {
+        "id": 6,
+        "name": "District 4"
+      }
+    ],
+    "video": "https://www.youtube.com/watch?v=abcdefghijklmnopqrstuvwxyz3",
+    "deleted": false
+  },
+  {
+    "id": 4,
+    "tutorSchedules": [
+      {
+        "id": 7,
+        "weekDay": "Sunday",
+        "teachingTime": "evening"
+      },
+      {
+        "id": 8,
+        "weekDay": "Wednesday",
+        "teachingTime": "morning"
+      }
+    ],
+    "tutor": {
+      "id": 4,
+      "fullname": "David Lee",
+      "phone": "+4445556666",
+      "rating": 4.9,
+      "educationLevel": "Master"
+    },
+    "name": [
+      {
+        "id": 1,
+        "subject": "Mathematics"
+      },
+      {
+        "id": 2,
+        "subject": "Physics"
+      },
+      {
+        "id": 3,
+        "subject": "Chemistry"
+      }
+    ],
+    "grade": 11,
+    "description": "Experienced tutor passionate about mathematics education, dynamic physics lessons tailored to individual student needs, Passionate about literature and developing critical thinking skills. Exploring the wonders of chemistry through engaging experiments.",
+    "location": [
+      {
+        "id": 7,
+        "name": "District 8"
+      },
+      {
+        "id": 8,
+        "name": "District 10"
+      }
+    ],
+    "video": "https://www.youtube.com/watch?v=abcdefghijklmnopqrstuvwxyz4",
+    "deleted": false
+  },
+  {
+    "id": 5,
+    "tutorSchedules": [
+      {
+        "id": 9,
+        "weekDay": "Tuesday",
+        "teachingTime": "morning"
+      },
+      {
+        "id": 10,
+        "weekDay": "Thursday",
+        "teachingTime": "afternoon"
+      }
+    ],
+    "tutor": {
+      "id": 5,
+      "fullname": "Sophia Taylor",
+      "phone": "+7778889999",
+      "rating": 4.6,
+      "educationLevel": "Bachelor"
+    },
+    "name": [
+      {
+        "id": 1,
+        "subject": "Mathematics"
+      },
+      {
+        "id": 2,
+        "subject": "Physics"
+      },
+      {
+        "id": 3,
+        "subject": "Chemistry"
+      }
+    ],
+    "grade": 10,
+    "description": "Experienced tutor passionate about mathematics education, dynamic physics lessons tailored to individual student needs, Passionate about literature and developing critical thinking skills. Exploring the wonders of chemistry through engaging experiments.",
+    "location": [
+      {
+        "id": 9,
+        "name": "District 6"
+      },
+      {
+        "id": 10,
+        "name": "District 9"
+      }
+    ],
+    "video": "https://www.youtube.com/watch?v=abcdefghijklmnopqrstuvwxyz5",
+    "deleted": false
+  },
+  {
+    "id": 6,
+    "tutorSchedules": [
+      {
+        "id": 11,
+        "weekDay": "Monday",
+        "teachingTime": "afternoon"
+      },
+      {
+        "id": 12,
+        "weekDay": "Wednesday",
+        "teachingTime": "evening"
+      }
+    ],
+    "tutor": {
+      "id": 6,
+      "fullname": "Oliver Wilson",
+      "phone": "+2223334444",
+      "rating": 4.8,
+      "educationLevel": "Ph.D."
+    },
+    "name": [
+      {
+        "id": 1,
+        "subject": "Mathematics"
+      },
+      {
+        "id": 2,
+        "subject": "Physics"
+      },
+      {
+        "id": 3,
+        "subject": "Chemistry"
+      }
+    ],
+    "grade": 12,
+    "description": "Experienced tutor passionate about mathematics education, dynamic physics lessons tailored to individual student needs, Passionate about literature and developing critical thinking skills. Exploring the wonders of chemistry through engaging experiments.",
+    "location": [
+      {
+        "id": 11,
+        "name": "District 3"
+      },
+      {
+        "id": 12,
+        "name": "District 5"
+      }
+    ],
+    "video": "https://www.youtube.com/watch?v=abcdefghijklmnopqrstuvwxyz6",
+    "deleted": false
+  },
+  {
+    "id": 7,
+    "tutorSchedules": [
+      {
+        "id": 13,
+        "weekDay": "Friday",
+        "teachingTime": "evening"
+      },
+      {
+        "id": 14,
+        "weekDay": "Saturday",
+        "teachingTime": "morning"
+      }
+    ],
+    "tutor": {
+      "id": 7,
+      "fullname": "Mia Garcia",
+      "phone": "+5556667777",
+      "rating": 4.7,
+      "educationLevel": "Master"
+    },
+    "name": [
+      {
+        "id": 1,
+        "subject": "Mathematics"
+      },
+      {
+        "id": 2,
+        "subject": "Physics"
+      },
+      {
+        "id": 3,
+        "subject": "Chemistry"
+      }
+    ],
+    "grade": 11,
+    "description": "Experienced tutor passionate about mathematics education, dynamic physics lessons tailored to individual student needs, Passionate about literature and developing critical thinking skills. Exploring the wonders of chemistry through engaging experiments.",
+    "location": [
+      {
+        "id": 13,
+        "name": "District 1"
+      },
+      {
+        "id": 14,
+        "name": "District 7"
+      }
+    ],
+    "video": "https://www.youtube.com/watch?v=abcdefghijklmnopqrstuvwxyz7",
+    "deleted": false
+  },
+  {
+    "id": 8,
+    "tutorSchedules": [
+      {
+        "id": 15,
+        "weekDay": "Sunday",
+        "teachingTime": "morning"
+      },
+      {
+        "id": 16,
+        "weekDay": "Tuesday",
+        "teachingTime": "afternoon"
+      }
+    ],
+    "tutor": {
+      "id": 8,
+      "fullname": "Liam Anderson",
+      "phone": "+8889990000",
+      "rating": 4.9,
+      "educationLevel": "Ph.D."
+    },
+    "name": [
+      {
+        "id": 1,
+        "subject": "Mathematics"
+      },
+      {
+        "id": 2,
+        "subject": "Physics"
+      },
+      {
+        "id": 3,
+        "subject": "Chemistry"
+      }
+    ],
+    "grade": 12,
+    "description": "Experienced tutor passionate about mathematics education, dynamic physics lessons tailored to individual student needs, Passionate about literature and developing critical thinking skills. Exploring the wonders of chemistry through engaging experiments.",
+    "location": [
+      {
+        "id": 15,
+        "name": "District 2"
+      },
+      {
+        "id": 16,
+        "name": "District 4"
+      }
+    ],
+    "video": "https://www.youtube.com/watch?v=abcdefghijklmnopqrstuvwxyz8",
+    "deleted": false
+  },
+  {
+    "id": 9,
+    "tutorSchedules": [
+      {
+        "id": 17,
+        "weekDay": "Wednesday",
+        "teachingTime": "evening"
+      },
+      {
+        "id": 18,
+        "weekDay": "Thursday",
+        "teachingTime": "morning"
+      }
+    ],
+    "tutor": {
+      "id": 9,
+      "fullname": "Isabella Martinez",
+      "phone": "+1231231234",
+      "rating": 4.5,
+      "educationLevel": "Bachelor"
+    },
+    "name": [
+      {
+        "id": 1,
+        "subject": "Mathematics"
+      },
+      {
+        "id": 2,
+        "subject": "Physics"
+      },
+      {
+        "id": 3,
+        "subject": "Chemistry"
+      }
+    ],
+    "grade": 10,
+    "description": "Experienced tutor passionate about mathematics education, dynamic physics lessons tailored to individual student needs, Passionate about literature and developing critical thinking skills. Exploring the wonders of chemistry through engaging experiments.",
+    "location": [
+      {
+        "id": 17,
+        "name": "District 8"
+      },
+      {
+        "id": 18,
+        "name": "District 10"
+      }
+    ],
+    "video": "https://www.youtube.com/watch?v=abcdefghijklmnopqrstuvwxyz9",
+    "deleted": false
+  },
+  {
+    "id": 10,
+    "tutorSchedules": [
+      {
+        "id": 19,
+        "weekDay": "Monday",
+        "teachingTime": "afternoon"
+      },
+      {
+        "id": 20,
+        "weekDay": "Friday",
+        "teachingTime": "evening"
+      }
+    ],
+    "tutor": {
+      "id": 10,
+      "fullname": "Noah Rodriguez",
+      "phone": "+9876543210",
+      "rating": 4.6,
+      "educationLevel": "Master"
+    },
+    "name": [
+      {
+        "id": 1,
+        "subject": "Mathematics"
+      },
+      {
+        "id": 2,
+        "subject": "Physics"
+      },
+      {
+        "id": 3,
+        "subject": "Chemistry"
+      }
+    ],
+    "grade": 11,
+    "description": "Experienced tutor passionate about mathematics education, dynamic physics lessons tailored to individual student needs, Passionate about literature and developing critical thinking skills. Exploring the wonders of chemistry through engaging experiments.",
+    "location": [
+      {
+        "id": 19,
+        "name": "District 6"
+      },
+      {
+        "id": 20,
+        "name": "District 9"
+      }
+    ],
+    "video": "https://www.youtube.com/watch?v=abcdefghijklmnopqrst",
+    "deleted": false
+  }
+]

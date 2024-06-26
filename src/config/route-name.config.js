@@ -6,4 +6,6 @@ export const routeNames = {
   UserInfo: '/user-info',
   UserEdit: '/user-info/update',
   ChangePassword: '/user-info/change-password',
+  TutorRequest: '/tutor-request',
+  RegisterRequest: '/register-request',
 }
