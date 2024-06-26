@@ -1,69 +1,29 @@
-import './styles.scss'
-import {
-  Button,
-  Divider,
-  Image,
-  Modal,
-  Popconfirm,
-  Space,
-  Table,
-  Tag,
-} from 'antd'
+import { Divider, Image, Modal, Space, Table, Tag } from 'antd'
 import { useEffect, useState } from 'react'
 import { InfoCircleOutlined } from '@ant-design/icons'
 import { SubHeading } from '../../components/Typography/SubHeading/SubHeading'
 import ReactPlayer from 'react-player'
-import {
-  approveRegisterRequest,
-  getAllRegisterRequest,
-  rejectRegisterRequest,
-} from '../../services/apis/subject.service'
+import { getAllApprovedRegister } from '../../services/apis/subject.service'
 import ScheduleTable from '../../components/ScheduleTable/ScheduleTable'
 import { TEACHINGSLOTS, WEEKDAYS } from '../../utils/time-slot'
 
-const RegisterRequest = () => {
+const Tutors = () => {
   const [open, setOpen] = useState(false)
   const [selectedRecord, setSelectedRecord] = useState(null)
   const [registers, setRegisters] = useState([])
 
-  const fetchPendingRegister = async () => {
+  const fetchTutors = async () => {
     try {
-      const response = await getAllRegisterRequest()
-      console.log(response)
+      const response = await getAllApprovedRegister()
       setRegisters(response)
+      console.log(response)
     } catch (error) {
       console.log(error)
     }
   }
-
   useEffect(() => {
-    fetchPendingRegister()
+    fetchTutors()
   }, [])
-  const handleCancel = () => {
-    setOpen(false)
-  }
-
-  const handleConfirmOk = async () => {
-    setOpen(false)
-    console.log(selectedRecord.id)
-    try {
-      await approveRegisterRequest({ accountId: selectedRecord.id })
-      await fetchPendingRegister()
-    } catch (error) {
-      console.log(error)
-    }
-  }
-
-  const handleConfirmCancel = async () => {
-    setOpen(false)
-    console.log(selectedRecord.id)
-    try {
-      await rejectRegisterRequest({ accountId: selectedRecord.id })
-      await fetchPendingRegister()
-    } catch (error) {
-      console.log(error)
-    }
-  }
 
   const columns = [
     {
@@ -86,6 +46,18 @@ const RegisterRequest = () => {
       dataIndex: 'phone',
       key: 'phone',
     },
+    // {
+    //   title: 'Education Level',
+    //   dataIndex: 'educationLevel',
+    //   key: 'educationLevel',
+    //   render: (text) => text[0]?.educationLevel || 'N/A',
+    // },
+    // {
+    //   title: 'Rating',
+    //   dataIndex: 'tutor',
+    //   key: 'tutor',
+    //   render: (text) => text?.rating || 'No rating',
+    // },
     {
       title: 'Actions',
       key: 'actions',
@@ -102,7 +74,7 @@ const RegisterRequest = () => {
     setSelectedRecord(record)
     setOpen(true)
   }
-
+  console.log(selectedRecord)
   const renderService = () => {
     if (!selectedRecord) return null
 
@@ -213,6 +185,7 @@ const RegisterRequest = () => {
         ),
       },
     ]
+
     return (
       <Table
         columns={columnService}
@@ -221,6 +194,7 @@ const RegisterRequest = () => {
         showHeader={false}
         rowKey='key'
         bordered
+        style={{ width: '100%' }}
       />
     )
   }
@@ -228,31 +202,13 @@ const RegisterRequest = () => {
     <>
       <Table columns={columns} dataSource={registers} rowKey='id' />
       <Modal
-        title={<SubHeading>Register Request</SubHeading>}
+        title={<SubHeading>Tutor</SubHeading>}
         centered
-        visible={open}
-        onCancel={() => handleCancel()}
+        open={open}
+        onOk={() => setOpen(false)}
+        onCancel={() => setOpen(false)}
         width={1000}
-        footer={[
-          <Popconfirm
-            key='popconfirm-cancel'
-            title='Are you sure to reject?'
-            onConfirm={handleConfirmCancel}
-            okText='Ok'
-            cancelText='No'
-          >
-            <Button danger>Reject</Button>
-          </Popconfirm>,
-          <Popconfirm
-            key='popconfirm-ok'
-            title='Are you sure to approve?'
-            onConfirm={handleConfirmOk}
-            okText='Ok'
-            cancelText='No'
-          >
-            <Button type='primary'>Approve</Button>
-          </Popconfirm>,
-        ]}
+        footer=''
       >
         <Divider />
         {renderService()}
@@ -261,4 +217,4 @@ const RegisterRequest = () => {
   )
 }
 
-export default RegisterRequest
+export default Tutors

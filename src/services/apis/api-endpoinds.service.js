@@ -18,4 +18,10 @@ export const ENDPOINTS = {
   users: {
     base: '/api/account',
   },
+  subject: {
+    pendingRegister: '/api/pending-registration',
+    approvedRegister: '/api/approved-registration',
+    approve: '/api/approved-subject-registration',
+    reject: '/api/rejected-subject-registration',
+  },
 }
