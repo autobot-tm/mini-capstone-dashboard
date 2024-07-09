@@ -8,6 +8,7 @@ import UserEdit from '../pages/UserEdit/UserEdit'
 import UserInfo from '../pages/UserInfo/UserInfo'
 import RegisterRequest from '../pages/RegisterRequest/RegisterRequest'
 import Tutors from '../pages/Tutors/Tutors'
+import Complaint from '../pages/Complaint/Complaint'
 
 export const routePaths = {
   public: [
@@ -48,6 +49,10 @@ export const routePaths = {
     {
       path: routeNames.Tutor,
       element: <Tutors />,
+    },
+    {
+      path: routeNames.Complaint,
+      element: <Complaint />,
     },
   ],
 }

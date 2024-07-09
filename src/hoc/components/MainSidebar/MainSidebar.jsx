@@ -6,6 +6,7 @@ import {
   TeamOutlined,
   SafetyCertificateOutlined,
   CloudUploadOutlined,
+  ExclamationOutlined,
 } from '@ant-design/icons'
 const { Sider } = Layout
 import { useLocation } from 'react-router-dom'
@@ -42,6 +43,12 @@ const menuItems = [
     path: '/tutor-request',
     label: 'Tutor Request',
     key: 'tutor-request',
+  },
+  {
+    icon: <ExclamationOutlined />,
+    path: '/complaint',
+    label: 'Complaint',
+    key: 'complaint',
   },
 ]
 const MainSidebar = () => {

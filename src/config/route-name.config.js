@@ -8,4 +8,5 @@ export const routeNames = {
   ChangePassword: '/user-info/change-password',
   TutorRequest: '/tutor-request',
   RegisterRequest: '/register-request',
+  Complaint: '/complaint',
 }

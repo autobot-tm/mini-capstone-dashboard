@@ -24,4 +24,9 @@ export const ENDPOINTS = {
     approve: '/api/approved-subject-registration',
     reject: '/api/rejected-subject-registration',
   },
+  complaint: {
+    base: '/api/complaints',
+    approve: (id) => `/api/complaint/approved/${id}`,
+    reject: (id) => `/api/complaint/rejected/${id}`,
+  },
 }

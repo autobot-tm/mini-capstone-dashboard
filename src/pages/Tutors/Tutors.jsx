@@ -74,7 +74,7 @@ const Tutors = () => {
     setSelectedRecord(record)
     setOpen(true)
   }
-  console.log(selectedRecord)
+
   const renderService = () => {
     if (!selectedRecord) return null
 
