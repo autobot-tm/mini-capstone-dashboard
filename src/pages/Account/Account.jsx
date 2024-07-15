@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react'
 import {
   Table,
   Button,
@@ -22,31 +21,24 @@ import {
 } from '@ant-design/icons'
 import { openAccountInfoModal } from '../../store/slices/modal.slice'
 import { useDispatch, useSelector } from 'react-redux'
+import useSWR from 'swr'
 
 const Account = () => {
-  const [users, setUsers] = useState([])
-  const [isLoading, setIsLoading] = useState(true)
-  const [isError, setIsError] = useState(false)
   const { role } = useSelector((state) => state.auth)
   const dispatch = useDispatch()
 
   const fetchUsers = async () => {
-    setIsLoading(true)
-    setIsError(false)
-    try {
-      const response = await getUsers()
-      setUsers(response)
-    } catch (error) {
-      console.log(error)
-      setIsError(true)
-    } finally {
-      setIsLoading(false)
-    }
+    const response = await getUsers()
+    return response
   }
 
-  useEffect(() => {
-    fetchUsers()
-  }, [])
+  const {
+    data: users,
+    error,
+    isLoading,
+    mutate,
+  } = useSWR('/api/getUsers', fetchUsers)
+
   const handleInfo = (id) => {
     dispatch(openAccountInfoModal(id))
   }
@@ -54,7 +46,7 @@ const Account = () => {
     try {
       await deleteUsers({ id })
       message.success('User deleted successfully')
-      fetchUsers()
+      mutate()
     } catch (error) {
       message.error('Failed to delete user')
     }
@@ -64,7 +56,7 @@ const Account = () => {
     try {
       await restoreUsers({ id })
       message.success('User restored successfully')
-      fetchUsers()
+      mutate()
     } catch (error) {
       message.error('Failed to restored user')
     }
@@ -212,7 +204,7 @@ const Account = () => {
     return <SpinLoading />
   }
 
-  if (isError) {
+  if (error) {
     return (
       <Alert
         message='Error'
