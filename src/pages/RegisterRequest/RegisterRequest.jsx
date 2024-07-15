@@ -1,5 +1,6 @@
 import './styles.scss'
 import {
+  Alert,
   Button,
   Divider,
   Image,
@@ -9,7 +10,7 @@ import {
   Table,
   Tag,
 } from 'antd'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { InfoCircleOutlined } from '@ant-design/icons'
 import { SubHeading } from '../../components/Typography/SubHeading/SubHeading'
 import ReactPlayer from 'react-player'
@@ -20,25 +21,25 @@ import {
 } from '../../services/apis/subject.service'
 import ScheduleTable from '../../components/ScheduleTable/ScheduleTable'
 import { TEACHINGSLOTS, WEEKDAYS } from '../../utils/time-slot'
+import useSWR from 'swr'
+import { SpinLoading } from '../../components/SpinLoading'
 
 const RegisterRequest = () => {
   const [open, setOpen] = useState(false)
   const [selectedRecord, setSelectedRecord] = useState(null)
-  const [registers, setRegisters] = useState([])
 
   const fetchPendingRegister = async () => {
-    try {
-      const response = await getAllRegisterRequest()
-      console.log(response)
-      setRegisters(response)
-    } catch (error) {
-      console.log(error)
-    }
+    const response = await getAllRegisterRequest()
+    return response
   }
 
-  useEffect(() => {
-    fetchPendingRegister()
-  }, [])
+  const {
+    data: registers,
+    error,
+    isLoading,
+    mutate,
+  } = useSWR('/api/getRegisterRequest', fetchPendingRegister)
+
   const handleCancel = () => {
     setOpen(false)
   }
@@ -48,7 +49,7 @@ const RegisterRequest = () => {
     console.log(selectedRecord.id)
     try {
       await approveRegisterRequest({ accountId: selectedRecord.id })
-      await fetchPendingRegister()
+      mutate()
     } catch (error) {
       console.log(error)
     }
@@ -59,7 +60,7 @@ const RegisterRequest = () => {
     console.log(selectedRecord.id)
     try {
       await rejectRegisterRequest({ accountId: selectedRecord.id })
-      await fetchPendingRegister()
+      mutate()
     } catch (error) {
       console.log(error)
     }
@@ -221,6 +222,21 @@ const RegisterRequest = () => {
         showHeader={false}
         rowKey='key'
         bordered
+      />
+    )
+  }
+
+  if (isLoading) {
+    return <SpinLoading />
+  }
+
+  if (error) {
+    return (
+      <Alert
+        message='Error'
+        description='Failed to fetch register request.'
+        type='error'
+        showIcon
       />
     )
   }

@@ -7,76 +7,58 @@ import {
   Table,
   notification,
 } from 'antd'
-import { useEffect, useState } from 'react'
 import {
   approveUpTutorRequest,
   getTutorRequest,
   rejectUpTutorRequest,
 } from '../../services/apis/user-manager.service'
 import { SpinLoading } from '../../components/SpinLoading'
+import useSWR from 'swr'
 
 const TutorRequest = () => {
-  const [tutorRequest, setTutorRequest] = useState([])
   const [api, contextHolder] = notification.useNotification()
-  const [isLoading, setIsLoading] = useState(false)
-  const [isError, setIsError] = useState(false)
 
   const fetchTutorRequest = async () => {
-    setIsLoading(true)
-    setIsError(false)
-    try {
-      const response = await getTutorRequest()
-      setTutorRequest(response)
-      console.log(response)
-    } catch (error) {
-      console.log(error)
-      setIsError(true)
-    } finally {
-      setIsLoading(false)
-    }
+    const response = await getTutorRequest()
+    return response
   }
-  useEffect(() => {
-    fetchTutorRequest()
-  }, [])
+
+  const {
+    data: tutorRequest,
+    error,
+    isLoading,
+    mutate,
+  } = useSWR('/api/getTutorRequest', fetchTutorRequest)
 
   const handleUpRoleTutor = async (id) => {
-    setIsLoading(true)
-    setIsError(false)
     try {
       await approveUpTutorRequest({ accountId: id })
       api.success({
         message: 'Approved up role successful',
         type: 'success',
       })
-      fetchTutorRequest()
+      mutate()
     } catch (error) {
       api.error({
-        message: error.error,
-        type: 'Error',
+        message: error.message,
+        type: 'error',
       })
-      setIsError(true)
-    } finally {
-      setIsLoading(false)
     }
   }
+
   const handleRejectUpRoleTutor = async (id) => {
-    setIsLoading(true)
-    setIsError(false)
     try {
       await rejectUpTutorRequest({ accountId: id })
       api.success({
         message: 'Rejected successful',
         type: 'success',
       })
-      fetchTutorRequest()
+      mutate()
     } catch (error) {
       api.error({
-        message: error.error,
-        type: 'Error',
+        message: error.message,
+        type: 'error',
       })
-      setIsError(true)
-    } finally {
-      setIsLoading(false)
     }
   }
   const columns = [
@@ -146,7 +128,7 @@ const TutorRequest = () => {
     return <SpinLoading />
   }
 
-  if (isError) {
+  if (error) {
     return (
       <Alert
         message='Error'

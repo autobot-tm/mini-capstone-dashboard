@@ -1,31 +1,31 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import {
   approveComplaintService,
   getAllComplaintService,
   rejectComplaintService,
 } from '../../services/apis/complaint.service'
-import { Button, Divider, Modal, Space, Table, Tag } from 'antd'
+import { Alert, Button, Divider, Modal, Space, Table, Tag } from 'antd'
 import { InfoCircleOutlined } from '@ant-design/icons'
 import { SubHeading } from '../../components/Typography/SubHeading/SubHeading'
+import { SpinLoading } from '../../components/SpinLoading'
+import useSWR from 'swr'
 
 const Complaint = () => {
-  const [complaints, setComplaints] = useState([])
   const [selectedRecord, setSelectedRecord] = useState(null)
   const [open, setOpen] = useState(false)
   const [filteredInfo, setFilteredInfo] = useState({})
 
   const fetchComplaints = async () => {
-    try {
-      const response = await getAllComplaintService()
-      setComplaints(response)
-    } catch (error) {
-      console.log(error)
-    }
+    const response = await getAllComplaintService()
+    return response
   }
 
-  useEffect(() => {
-    fetchComplaints()
-  }, [])
+  const {
+    data: complaints,
+    error,
+    isLoading,
+    mutate,
+  } = useSWR('/api/getComplaints', fetchComplaints)
 
   const columns = [
     {
@@ -142,7 +142,7 @@ const Complaint = () => {
     const approveComplaint = async () => {
       try {
         await approveComplaintService({ id })
-        await fetchComplaints()
+        mutate()
         setOpen(false)
       } catch (error) {
         console.log(error)
@@ -152,7 +152,7 @@ const Complaint = () => {
     const rejectComplaint = async () => {
       try {
         await rejectComplaintService({ id })
-        await fetchComplaints()
+        mutate()
         setOpen(false)
       } catch (error) {
         console.log(error)
@@ -194,6 +194,21 @@ const Complaint = () => {
 
   const handleChange = (pagination, filters) => {
     setFilteredInfo(filters)
+  }
+
+  if (isLoading) {
+    return <SpinLoading />
+  }
+
+  if (error) {
+    return (
+      <Alert
+        message='Error'
+        description='Failed to fetch complaints.'
+        type='error'
+        showIcon
+      />
+    )
   }
 
   return (

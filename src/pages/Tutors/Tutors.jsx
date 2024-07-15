@@ -1,29 +1,28 @@
-import { Divider, Image, Modal, Space, Table, Tag } from 'antd'
-import { useEffect, useState } from 'react'
+import { Alert, Divider, Image, Modal, Space, Table, Tag } from 'antd'
+import { useState } from 'react'
 import { InfoCircleOutlined } from '@ant-design/icons'
 import { SubHeading } from '../../components/Typography/SubHeading/SubHeading'
 import ReactPlayer from 'react-player'
 import { getAllApprovedRegister } from '../../services/apis/subject.service'
 import ScheduleTable from '../../components/ScheduleTable/ScheduleTable'
 import { TEACHINGSLOTS, WEEKDAYS } from '../../utils/time-slot'
+import { SpinLoading } from '../../components/SpinLoading'
+import useSWR from 'swr'
 
 const Tutors = () => {
   const [open, setOpen] = useState(false)
   const [selectedRecord, setSelectedRecord] = useState(null)
-  const [registers, setRegisters] = useState([])
 
   const fetchTutors = async () => {
-    try {
-      const response = await getAllApprovedRegister()
-      setRegisters(response)
-      console.log(response)
-    } catch (error) {
-      console.log(error)
-    }
+    const response = await getAllApprovedRegister()
+    return response
   }
-  useEffect(() => {
-    fetchTutors()
-  }, [])
+
+  const {
+    data: registers,
+    error,
+    isLoading,
+  } = useSWR('/api/getTutors', fetchTutors)
 
   const columns = [
     {
@@ -195,6 +194,21 @@ const Tutors = () => {
         rowKey='key'
         bordered
         style={{ width: '100%' }}
+      />
+    )
+  }
+
+  if (isLoading) {
+    return <SpinLoading />
+  }
+
+  if (error) {
+    return (
+      <Alert
+        message='Error'
+        description='Failed to fetch tutor.'
+        type='error'
+        showIcon
       />
     )
   }
