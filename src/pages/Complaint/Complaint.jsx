@@ -9,6 +9,7 @@ import { InfoCircleOutlined } from '@ant-design/icons'
 import { SubHeading } from '../../components/Typography/SubHeading/SubHeading'
 import { SpinLoading } from '../../components/SpinLoading'
 import useSWR from 'swr'
+import moment from 'moment'
 
 const Complaint = () => {
   const [selectedRecord, setSelectedRecord] = useState(null)
@@ -56,6 +57,8 @@ const Complaint = () => {
               ? 'orange'
               : status === 'APPROVED'
               ? 'green'
+              : status === 'REJECTED'
+              ? 'magenta'
               : 'default'
           }
         >
@@ -105,6 +108,8 @@ const Complaint = () => {
                   ? 'orange'
                   : text === 'APPROVED'
                   ? 'green'
+                  : text === 'REJECTED'
+                  ? 'magenta'
                   : 'default'
               }
             >
@@ -135,7 +140,7 @@ const Complaint = () => {
       {
         key: '4',
         field: 'Date',
-        info: createdAt,
+        info: moment(createdAt).format('HH:mm:ss - DD/MM/YYYY'),
       },
     ]
 

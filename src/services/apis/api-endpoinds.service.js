@@ -29,4 +29,7 @@ export const ENDPOINTS = {
     approve: (id) => `/api/complaint/approved/${id}`,
     reject: (id) => `/api/complaint/rejected/${id}`,
   },
+  dashboard: {
+    base: '/api/charts'
+  }
 }

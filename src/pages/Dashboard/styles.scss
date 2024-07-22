@@ -1,0 +1,28 @@
+.chart-container {
+  height: 70vh;
+  width: 100%;
+
+  .item {
+    height: 50%;
+  }
+  .ant-picker {
+    margin-bottom: 20px;
+  }
+
+  figure {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 90%;
+    text-align: center;
+  }
+}
+
+#container-card {
+  div.ant-card-body {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+  }
+}
