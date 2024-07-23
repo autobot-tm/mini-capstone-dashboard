@@ -20,10 +20,12 @@ import {
 } from '@ant-design/icons'
 import { formatCustomCurrency } from '../../utils/number-seperator'
 import TransactionTable from './components/TransactionTable/TransactionTable'
+import { useSelector } from 'react-redux'
 
 // const { RangePicker } = DatePicker
 
 const Dashboard = () => {
+  const { role } = useSelector((state) => state.auth)
   const fetchDashboard = async () => {
     const response = await getDashboard()
     response.moneyByDays.sort((a, b) => new Date(a.day) - new Date(b.day))
@@ -42,7 +44,11 @@ const Dashboard = () => {
     error: errorTrans,
     isLoading: isLoadingTrans,
   } = useSWR('/api/transaction', fetchTransaction)
-  console.log('transactions', transactions)
+
+  if (role !== 'ADMIN') {
+    return 'Your role can not access!'
+  }
+
   if (isLoading) {
     return <SpinLoading />
   }
