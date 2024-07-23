@@ -5,16 +5,21 @@ import SummaryCard from './components/SummaryCard/SummaryCard'
 import './styles.scss'
 import { Caption } from '../../components/Typography/Caption/Caption'
 // import moment from 'moment'
-import { getDashboard } from '../../services/apis/dashboard.service'
+import {
+  getDashboard,
+  getListTransaction,
+} from '../../services/apis/dashboard.service'
 import useSWR from 'swr'
 import { SpinLoading } from '../../components/SpinLoading'
 import PieChart from './components/PieChart/PieChart'
 import {
   DollarOutlined,
+  InboxOutlined,
   TeamOutlined,
   TransactionOutlined,
 } from '@ant-design/icons'
 import { formatCustomCurrency } from '../../utils/number-seperator'
+import TransactionTable from './components/TransactionTable/TransactionTable'
 
 // const { RangePicker } = DatePicker
 
@@ -25,8 +30,19 @@ const Dashboard = () => {
     return response
   }
 
+  const fetchTransaction = async () => {
+    const response = await getListTransaction()
+    return response
+  }
+
   const { data, error, isLoading } = useSWR('/api/charts', fetchDashboard)
 
+  const {
+    data: transactions,
+    error: errorTrans,
+    isLoading: isLoadingTrans,
+  } = useSWR('/api/transaction', fetchTransaction)
+  console.log('transactions', transactions)
   if (isLoading) {
     return <SpinLoading />
   }
@@ -47,24 +63,22 @@ const Dashboard = () => {
       <Row gutter={[16, 16]} justify='center'>
         <Col xs={24} lg={6}>
           <SummaryCard
-            title='Total Users'
-            value={
-              data.rolePercentages[3].count + data.rolePercentages[2].count
-            }
+            title='Total Accounts'
+            value={data?.totalAccounts}
             icon={<TeamOutlined style={{ fontSize: 44 }} />}
           />
         </Col>
         <Col xs={24} lg={6}>
           <SummaryCard
-            title='Total Tutor Payment'
-            value={data.tutorPaymentStatus[0].count}
-            icon={<TeamOutlined style={{ fontSize: 44 }} />}
+            title='Total Monthly Package Transactions'
+            value={data?.transactionCounts?.monthlyPackageTransactions}
+            icon={<InboxOutlined style={{ fontSize: 44 }} />}
           />
         </Col>
         <Col xs={24} lg={6}>
           <SummaryCard
-            title='Transactions'
-            value={123}
+            title='Total Transactions'
+            value={data?.transactionCounts?.totalTransactions}
             icon={<TransactionOutlined style={{ fontSize: 44 }} />}
           />
         </Col>
@@ -72,26 +86,29 @@ const Dashboard = () => {
           {
             <SummaryCard
               title='Total Revenue'
-              value={formatCustomCurrency(2000000)}
+              value={formatCustomCurrency(data?.totalRechargedMoney)}
               icon={<DollarOutlined style={{ fontSize: 44 }} />}
             />
           }
         </Col>
       </Row>
       <Row gutter={[16, 16]} justify='center' className='chart-container'>
-        <Col xs={12} className='item'>
+        <Col xs={16} className='item'>
           <figure>
-            <LineChart data={data.moneyByDays} />
+            <LineChart data={data?.moneyByDays} />
             <Caption>Money by Days</Caption>
           </figure>
+          {isLoadingTrans && <SpinLoading />}
+          {errorTrans && 'Error fetch transactions'}
+          <TransactionTable data={transactions} />
         </Col>
-        <Col xs={12} className='item'>
+        <Col xs={8} className='item'>
           <figure>
-            <DoughnutChart data={data.rolePercentages} />
+            <DoughnutChart data={data?.rolePercentages} />
             <Caption>Role Percentages</Caption>
           </figure>
           <figure style={{ marginTop: 30 }}>
-            <PieChart data={data.tutorPaymentStatus} />
+            <PieChart data={data?.tutorPaymentStatus} />
             <Caption>Tutor Payment Status</Caption>
           </figure>
         </Col>

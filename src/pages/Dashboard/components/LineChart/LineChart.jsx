@@ -24,11 +24,11 @@ ChartJS.register(
 const LineChart = ({ data }) => {
   const chartData = useMemo(() => {
     return {
-      labels: data.map((item) => item.day),
+      labels: data.map((item) => item.date),
       datasets: [
         {
           label: 'Total Money',
-          data: data.map((item) => item.totalMoney),
+          data: data.map((item) => item.total),
           fill: false,
           backgroundColor: '#36A2EB',
           borderColor: '#36A2EB',

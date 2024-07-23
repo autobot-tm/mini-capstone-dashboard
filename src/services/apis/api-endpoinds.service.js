@@ -30,6 +30,7 @@ export const ENDPOINTS = {
     reject: (id) => `/api/complaint/rejected/${id}`,
   },
   dashboard: {
-    base: '/api/charts'
+    base: '/api/charts',
+    transaction: '/api/transactions'
   }
 }

@@ -26,3 +26,20 @@
     text-align: center;
   }
 }
+.transaction-table {
+  margin-top: 50px;
+  .ant-table {
+    max-height: 300px;
+    overflow: auto;
+  }
+  .ant-table-thead > tr > th {
+    background-color: #f0f2f5;
+    font-weight: bold;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+  }
+  .ant-table-pagination.ant-pagination {
+    justify-content: center;
+  }
+}
