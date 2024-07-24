@@ -42,7 +42,12 @@ const Account = () => {
   const handleInfo = (id) => {
     dispatch(openAccountInfoModal(id))
   }
-  const handleDelete = async (id) => {
+
+  const handleDelete = async (id, userRole) => {
+    if (userRole === 'ADMIN') {
+      message.warning('You cannot disable an ADMIN user.')
+      return
+    }
     try {
       await deleteUsers({ id })
       message.success('User deleted successfully')
@@ -58,7 +63,7 @@ const Account = () => {
       message.success('User restored successfully')
       mutate()
     } catch (error) {
-      message.error('Failed to restored user')
+      message.error('Failed to restore user')
     }
   }
 
@@ -176,14 +181,16 @@ const Account = () => {
               <Button type='primary' icon={<UndoOutlined />} />
             </Popconfirm>
           ) : (
-            <Popconfirm
-              title='Are you sure to delete this user?'
-              onConfirm={() => handleDelete(record.id)}
-              okText='Yes'
-              cancelText='No'
-            >
-              <Button danger>Disable</Button>
-            </Popconfirm>
+            record.role !== 'ADMIN' && (
+              <Popconfirm
+                title='Are you sure to delete this user?'
+                onConfirm={() => handleDelete(record.id, record.role)}
+                okText='Yes'
+                cancelText='No'
+              >
+                <Button danger>Disable</Button>
+              </Popconfirm>
+            )
           )}
           <i
             style={{ cursor: 'pointer' }}
@@ -197,7 +204,7 @@ const Account = () => {
   ]
 
   if (role !== 'ADMIN') {
-    return 'Your role can not access!'
+    return 'Your role cannot access this page!'
   }
 
   if (isLoading) {

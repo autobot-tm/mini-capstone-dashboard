@@ -1,5 +1,6 @@
 import { Table } from 'antd'
 import { formatCustomCurrency } from '../../../../utils/number-seperator'
+import { formatDate } from '../../../../utils/format-date/format-date'
 
 const TransactionTable = ({ data }) => {
   const columns = [
@@ -25,6 +26,7 @@ const TransactionTable = ({ data }) => {
       title: 'Date',
       dataIndex: 'transactionDate',
       key: 'transactionDate',
+      render: (text) => formatDate(text),
     },
   ]
 
